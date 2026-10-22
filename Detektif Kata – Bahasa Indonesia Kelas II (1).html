@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Detektif Kata – Bahasa Indonesia Kelas II</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--b1:#fff0c9;--b2:#e9ddff;--sf:#fff;--tx:#2b2540;--mu:#655e85;--pr:#6c4ff0;--pt:#fff;--ok:#1f9d55;--no:#d64545;--ac:#ffb703;--bd:#e3d6f7}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--b1:#231c3d;--b2:#1a2a45;--sf:#2b2548;--tx:#f3efff;--mu:#b9b1dc;--pr:#9a85ff;--pt:#161228;--ok:#4cd68a;--no:#ff7b7b;--ac:#ffc93c;--bd:#453d72}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(160deg,var(--b1),var(--b2)) fixed;color:var(--tx);font:18px/1.55 "Baloo 2","Nunito","Trebuchet MS",system-ui,sans-serif}
+main{max-width:900px;margin:0 auto;padding:12px 12px 90px;position:relative;z-index:1}
+.deco{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}.deco span{position:absolute;font-size:2.2rem;opacity:.3;animation:fl 7s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-16px) rotate(8deg)}}
+h1{font-size:2.1rem;line-height:1.1;margin:.2em 0}h2{margin:.3em 0}h3{margin:.2em 0}
+.card{background:var(--sf);border:2px solid var(--bd);border-radius:20px;padding:14px 16px;margin:12px 0;box-shadow:0 4px 0 var(--bd)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+button{font:inherit;font-weight:700;border:0;border-radius:14px;padding:10px 16px;background:var(--pr);color:var(--pt);cursor:pointer;min-height:46px}
+button.alt{background:var(--sf);color:var(--tx);border:2px solid var(--bd)}button:disabled{opacity:.4}
+.nav{display:flex;gap:6px;overflow-x:auto;padding:6px 0;position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:linear-gradient(var(--b1),transparent)}
+.nav button{white-space:nowrap;min-height:40px;padding:6px 12px;font-size:.9rem;background:var(--sf);color:var(--tx);border:2px solid var(--bd)}.nav button.on{background:var(--pr);color:var(--pt)}
+.bar{height:14px;border-radius:9px;background:var(--bd);overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#ffb703,#6c4ff0);transition:width .4s}
+.bot{position:fixed;left:0;right:0;bottom:0;padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;justify-content:center;background:var(--sf);border-top:2px solid var(--bd);z-index:6}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;background:var(--ac);color:#2b2540;font-weight:700;font-size:.8rem}
+.big{font-size:4.5rem;text-align:center;line-height:1.1}.mid{font-size:2.6rem;display:block}
+.opt{display:block;width:100%;text-align:left;margin:8px 0;background:var(--sf);color:var(--tx);border:2px solid var(--bd)}
+.opt.ok{background:var(--ok);color:#fff;border-color:var(--ok)}.opt.no{background:var(--no);color:#fff;border-color:var(--no)}
+.chip{display:inline-block;margin:4px;padding:8px 14px;border-radius:12px;background:var(--ac);color:#2b2540;font-weight:700;cursor:grab;border:2px solid transparent;font-size:1rem}.chip.sel{outline:3px solid var(--pr)}
+.slot{min-height:60px;border:2px dashed var(--bd);border-radius:14px;padding:6px;margin:8px 0}
+.tg{border:2px dashed var(--bd);border-radius:14px;padding:8px 10px;margin:8px 0;min-height:56px;display:flex;align-items:center;gap:10px}.tg.good{border:2px solid var(--ok);background:rgba(31,157,85,.12)}.tg.shake{animation:sk .3s}@keyframes sk{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.w{text-align:center;padding:10px 4px;cursor:pointer;border-radius:16px;background:var(--sf);border:2px solid var(--bd);color:var(--tx);font:inherit}
+.fb{padding:10px 12px;border-radius:12px;margin:8px 0;background:var(--b1);border:2px solid var(--bd)}
+input,textarea{font:inherit;padding:10px;border-radius:12px;border:2px solid var(--bd);background:var(--sf);color:var(--tx);width:100%;margin:4px 0}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.9rem}td,th{padding:6px 8px;border-bottom:1px solid var(--bd);text-align:left;white-space:nowrap}
+.stat{text-align:center}.stat b{font-size:2rem;display:block;color:var(--pr)}.mat{cursor:pointer}
+</style></head><body>
+<div class="deco"><span style="left:4%;top:12%">🔎</span><span style="left:90%;top:18%;animation-delay:1s">📚</span><span style="left:7%;top:72%;animation-delay:2s">⭐</span><span style="left:86%;top:64%;animation-delay:3s">✏️</span><span style="left:48%;top:90%;animation-delay:1.5s">🕵️</span><span style="left:70%;top:8%;animation-delay:2.5s">🧩</span></div>
+<main id="app"></main><div id="bot" class="bot" hidden></div>
+<script>
+const $=s=>document.querySelector(s),E=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const sh=a=>[...a].sort(()=>Math.random()-.5),cap=s=>s[0].toUpperCase()+s.slice(1);
+let snd=true,AC;
+function say(t){if(!snd||!window.speechSynthesis)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="id-ID";u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+function beep(f,d=.14,t=0){if(!snd)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.type="triangle";o.frequency.value=f;g.gain.value=.12;o.connect(g);g.connect(AC.destination);o.start(AC.currentTime+t);o.stop(AC.currentTime+t+d)}catch(e){}}
+const good=()=>{beep(660);beep(880,.2,.12)},bad=()=>beep(200,.3),win=()=>[523,659,784,1046].forEach((f,i)=>beep(f,.18,i*.12));
+document.addEventListener("click",e=>{if(e.target.closest("button,.w,.chip,.tg,.mat")&&!e.target.closest("[data-nb]"))beep(520,.06)});
+const ls={g(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},s(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+/* DATA */
+const W=[["🐱","kucing","hewan berkaki empat, suka makan ikan"],["🐟","ikan","hidup dan berenang di air"],["📚","buku","kumpulan kertas untuk dibaca"],["🚲","sepeda","kendaraan roda dua yang dikayuh"],["🍎","apel","buah bulat merah atau hijau"],["🏠","rumah","tempat kita tinggal"],["🌸","bunga","tumbuhan berwarna indah dan harum"],["☀️","matahari","menyinari bumi pada siang hari"],["🌙","bulan","tampak di langit malam"],["🌧️","hujan","air yang jatuh dari awan"],["🌳","pohon","tumbuhan besar berbatang kayu"],["🐦","burung","hewan berbulu yang bisa terbang"],["🚗","mobil","kendaraan roda empat"],["👟","sepatu","dipakai di kaki"],["🧢","topi","dipakai di kepala"],["🥛","susu","minuman putih menyehatkan"],["🍞","roti","makanan dari tepung yang dipanggang"],["✏️","pensil","alat untuk menulis"],["🎒","tas","tempat membawa buku"],["🐔","ayam","berkokok dan bertelur"],["🐮","sapi","hewan besar penghasil susu"],["⚽","bola","benda bulat untuk bermain"],["⏰","jam","penunjuk waktu"],["☂️","payung","pelindung dari hujan"],["🍌","pisang","buah berkulit kuning"],["🐰","kelinci","berbulu lembut bertelinga panjang"],["🐘","gajah","hewan besar berbelalai"],["🍚","nasi","makanan pokok dari beras"],["🐶","anjing","hewan yang setia menjaga rumah"],["🍉","semangka","buah besar, isinya merah dan segar"],["🍇","anggur","buah kecil bergerombol"],["🚌","bus","kendaraan besar untuk banyak orang"],["✈️","pesawat","kendaraan yang terbang di langit"],["⭐","bintang","bersinar di langit malam"],["🥕","wortel","sayuran berwarna oranye"],["🐢","kura-kura","hewan bercangkang, jalannya lambat"],["🪑","kursi","tempat duduk"],["🛏️","kasur","tempat tidur"],["🚪","pintu","jalan masuk ke dalam rumah"],["🔑","kunci","alat untuk membuka pintu"]];
+const MK=[["besar","lawan","kecil",["kecil","tinggi","lebar","jauh"]],["cantik","sama","indah",["indah","jelek","gelap","kotor"]],["panas","lawan","dingin",["dingin","hangat","basah","pedas"]],["tinggi","lawan","rendah",["rendah","besar","panjang","jauh"]],["pintar","sama","pandai",["pandai","malas","nakal","lucu"]],["terang","lawan","gelap",["gelap","putih","cerah","bersih"]],["senang","sama","gembira",["gembira","sedih","marah","takut"]],["basah","lawan","kering",["kering","dingin","hujan","bersih"]],["siang","lawan","malam",["malam","pagi","sore","hari"]],["rajin","lawan","malas",["malas","pandai","senang","kuat"]]];
+const KL=["Ibu memasak nasi di dapur","Adik bermain bola di lapangan","Kucing minum susu setiap pagi","Aku membaca buku di perpustakaan","Ayah naik sepeda ke kantor","Burung terbang di atas pohon","Kakak menulis cerita dengan pensil","Kami berangkat ke sekolah bersama"];
+const TX=[{t:"Rani memelihara seekor kucing bernama Mimi. Mimi berbulu putih dan suka tidur di kursi. Setiap pagi, Rani memberi Mimi susu hangat.",q:[["Siapa nama kucing Rani?","Mimi",["Mimi","Tiko","Putih","Rani"]],["Apa warna bulu Mimi?","putih",["putih","hitam","kuning","abu-abu"]],["Apa yang Rani berikan setiap pagi?","susu hangat",["susu hangat","ikan","roti","air dingin"]]]},{t:"Hari ini hujan turun deras. Budi membawa payung biru ke sekolah. Ia memakai sepatu dan jas hujan agar tidak basah.",q:[["Apa yang Budi bawa ke sekolah?","payung biru",["payung biru","topi merah","bola","sepeda"]],["Bagaimana cuaca hari ini?","hujan deras",["hujan deras","panas","cerah","berangin"]]]}];
+const ST=[["Pagi hari Adi bangun tidur.","Adi mandi dan sarapan.","Adi berangkat ke sekolah.","Adi belajar bersama teman."],["Ibu membeli telur di pasar.","Ibu membawa telur ke rumah.","Ibu menggoreng telur.","Kami makan telur dengan nasi."]];
+const CP=[["Menyimak","Memahami kata dan pesan sederhana yang didengar."],["Membaca dan memirsa","Membaca kata, kalimat, dan teks pendek serta memahami informasinya."],["Berbicara dan mempresentasikan","Menyampaikan kata dan kalimat sederhana secara lisan."],["Menulis","Menyusun kata menjadi kalimat sederhana dengan huruf kapital dan tanda baca."]];
+const TP=["Mengenali kata benda berdasarkan gambar.","Memahami makna kata (persamaan dan lawan kata).","Menyusun kata acak menjadi kalimat sederhana yang benar.","Menemukan informasi dari teks pendek.","Mengucapkan dan mengeja kata dengan jelas."];
+const MT=[["🐾","Kata Benda","Kata benda adalah nama orang, hewan, atau benda.","kucing, buku, Ibu, sepeda"],["🏃","Kata Kerja","Kata kerja menunjukkan kegiatan atau perbuatan.","berlari, menulis, makan, membaca"],["🌈","Kata Sifat","Kata sifat menerangkan keadaan atau ciri sesuatu.","besar, indah, rajin, panas"],["🔄","Persamaan Kata","Kata yang artinya hampir sama.","cantik = indah, pintar = pandai"],["↔️","Lawan Kata","Kata yang artinya berlawanan.","besar ↔ kecil, siang ↔ malam"],["🧩","Menyusun Kalimat","Kalimat terdiri dari siapa atau apa, kegiatan, dan tempat. Awali dengan huruf kapital.","Adik bermain bola di lapangan."],["❗","Tanda Baca","Titik (.) untuk kalimat biasa, tanda tanya (?) untuk pertanyaan, tanda seru (!) untuk seruan.","Siapa namamu? Aku senang sekali!"],["🔍","Membaca Teks Pendek","Baca pelan-pelan. Cari jawaban dengan kata tanya: siapa, apa, di mana, kapan, bagaimana.","Rani memberi Mimi susu. Siapa memberi susu? Rani."],["❓","Kata Tanya","Kata tanya dipakai untuk bertanya: siapa, apa, di mana, kapan, mengapa, bagaimana.","Siapa namamu? Di mana rumahmu?"],["📍","Kata Depan","Kata depan menunjukkan tempat: di, ke, dari.","Aku pergi ke sekolah. Buku ada di tas."],["🙋","Kata Ganti","Kata ganti menggantikan nama orang: aku, kamu, dia, kami, mereka.","Aku suka membaca. Dia suka menggambar."],["👏","Suku Kata","Kata bisa dipecah menjadi suku kata. Ucapkan sambil bertepuk tangan.","ku cing, se pe da, ma ta ha ri"],["🔠","Huruf Kapital","Huruf kapital dipakai di awal kalimat dan pada nama orang, kota, atau hari.","Budi pergi ke Yogyakarta hari Senin."],["🐐","Tiruan Bunyi Hewan","Banyak hewan punya suara khas yang ditirukan dengan kata.","Kucing meong, kambing mbek, anjing guk guk."],["📖","Bercerita","Cerita punya awal, tengah, dan akhir. Pakai kata pertama, lalu, kemudian, akhirnya.","Pertama aku mandi. Lalu aku sarapan. Akhirnya aku berangkat."],["🔁","Kata Ulang","Kata ulang adalah kata yang diulang, sering memakai tanda hubung.","kupu-kupu, jalan-jalan, anak-anak"]];
+const MS=[["🖼️","Misi 1: Tebak Gambar"],["💡","Misi 2: Makna Kata"],["🧩","Misi 3: Susun Kalimat"],["📖","Misi 4: Teks Pendek"]];
+const QZ=[["C1","Kata yang tepat untuk gambar 🍌 adalah …",["pisang","apel","anggur","wortel"],0,"Gambar itu adalah pisang."],["C1","Kata benda ditunjukkan oleh kata …",["berlari","besar","meja","indah"],2,"Meja adalah nama benda."],["C1","Kata kerja ditunjukkan oleh kata …",["menulis","kursi","cantik","rumah"],0,"Menulis adalah kegiatan."],["C2","Lawan kata “tinggi” adalah …",["panjang","rendah","besar","jauh"],1,"Tinggi lawannya rendah."],["C2","Persamaan kata “pintar” adalah …",["malas","nakal","pandai","lucu"],2,"Pintar sama artinya dengan pandai."],["C2","Kalimat yang ditulis dengan benar adalah …",["ibu memasak nasi","Ibu memasak nasi.","ibu memasak nasi.","Ibu Memasak nasi"],1,"Kalimat diawali huruf kapital dan diakhiri titik."],["C3","Susunan kata “bermain, adik, bola” yang benar adalah …",["Bola adik bermain.","Bermain bola adik.","Adik bermain bola.","Adik bola bermain."],2,"Siapa (adik), kegiatan (bermain), apa (bola)."],["HOTS","Dito memakai jas hujan dan membawa payung. Mengapa Dito melakukannya?",["Karena cuaca panas","Karena sedang hujan","Karena akan tidur","Karena hari libur"],1,"Jas hujan dan payung dipakai saat hujan."],["HOTS","Kata yang tidak cocok dalam kelompok: kucing, ayam, sapi, sepatu.",["kucing","ayam","sapi","sepatu"],3,"Tiga kata lainnya adalah hewan, sepatu bukan hewan."],["HOTS","Rina tidak membawa payung saat hujan deras. Apa yang paling mungkin terjadi?",["Bajunya basah","Bajunya kering","Ia kepanasan","Ia mengantuk"],0,"Tanpa payung, Rina akan kehujanan sehingga bajunya basah."]];
+const PG=[["dasbor","🏠","Dasbor"],["intro","🌟","Ayo Kenalan dengan Kata"],["materi","📘","Materi Seru"],["kamus","🔤","Kamus Gambar"],["suara","🐾","Suara Hewan"],["susun","🧩","Susun Kata"],["misi","🎮","Misi Detektif"],["game","🎯","Seret dan Cocokkan"],["kuis","📝","Kuis Evaluasi"],["ringkas","📚","Rangkuman dan Refleksi"],["hasil","🏅","Hasil Belajarku"],["panduan","❓","Cara Memakai Media"]];
+const LEARN=PG.slice(1,10).map(x=>x[0]);
+
+/* STATE */
+let U=ls.g("dk3:last",null),D=null,v=U?"dasbor":"nama";
+let M={m:0,qs:[],i:0,pk:null,got:0,built:[],prac:false,res:false},Q={i:0,pk:[],done:false},G={tab:0,sel:null,pl:[[],[]],pairs:null,ord:[],os:0};
+const key=u=>"dk3:"+(u.nama+"|"+u.kelas).toLowerCase();
+function load(){D=ls.g(key(U),{v:[],m:[null,null,null,null],q:null,a:[0,0,0],s:0,r:["","",""]});D.s=D.s||0}
+const prog=()=>Math.round(D.v.filter(x=>LEARN.includes(x)).length/LEARN.length*100);
+const msum=()=>D.m.reduce((a,b)=>a+(b||0),0),act=()=>D.a[0]+D.a[1]+D.a[2]+D.s,nilai=()=>Math.round(msum()*.4+(D.q===null?0:D.q*10)*.4+act()/18*100*.2),pred=n=>n>=85?"A (Sangat Baik)":n>=70?"B (Baik)":n>=55?"C (Cukup)":"D (Perlu Bimbingan)";
+async function save(){const r={nama:U.nama,kelas:U.kelas,progres:prog(),m1:D.m[0],m2:D.m[1],m3:D.m[2],m4:D.m[3],misi:msum(),kuis:D.q===null?null:D.q*10,game:act(),nilai:nilai(),waktu:new Date().toISOString()};ls.s(key(U),D);ls.s("dk3:last",U);const all=ls.g("dk3:all",{});all[key(U)]=r;ls.s("dk3:all",all);
+ try{const c=await claude.use("db");if(c)await c.collection("dk3").doc(key(U).replace(/[^a-z0-9]/g,"_")).set(r)}catch(e){}}
+function go(p){v=p;if(!D&&p!="nama"&&p!="guru")return;if(D&&LEARN.includes(p)&&!D.v.includes(p)){D.v.push(p);save()}draw();scrollTo(0,0)}
+function step(d){const i=PG.findIndex(x=>x[0]==v);go(PG[Math.max(1,Math.min(PG.length-1,i+d))][0])}
+const hd=t=>`<div class="card"><h2>${t}</h2></div>`;
+
+/* QUESTIONS (misi) */
+function mkQ(m){
+ if(m==0)return sh(W).slice(0,5).map(w=>({e:w[0],q:"Gambar apakah ini?",o:sh([w[1],...sh(W.filter(x=>x!=w)).slice(0,3).map(x=>x[1])]),a:w[1],ex:`Ini gambar ${w[1]}: ${w[2]}.`,say:w[1]}));
+ if(m==1)return sh(MK).slice(0,5).map(k=>({q:`${k[1]=="lawan"?"Lawan kata":"Persamaan kata"} “${k[0]}” adalah …`,o:sh(k[3]),a:k[2],ex:`${k[1]=="lawan"?"Lawan kata":"Persamaan kata"} “${k[0]}” adalah “${k[2]}”.`}));
+ if(m==2)return sh(KL).slice(0,5).map(s=>({arr:sh(s.split(" ")),a:s,ex:`Kalimat yang benar: “${s}.” Awali dengan huruf kapital dan akhiri dengan titik.`}));
+ return TX.flatMap(x=>x.q.map(q=>({tx:x.t,q:q[0],o:sh(q[2]),a:q[1],ex:`Jawabannya “${q[1]}”. Temukan di dalam teks.`})))}
+function start(m,prac){M={m,qs:mkQ(m),i:0,pk:null,got:0,built:[],prac:!!prac,res:false};v="play";draw();M.qs[0].e&&say(M.qs[0].q)}
+function ans(x){if(M.pk!==null)return;M.pk=x;x===M.qs[M.i].a?(M.got++,good()):bad();draw()}
+function pickT(k){const q=M.qs[M.i];if(M.pk!==null||M.built.includes(k))return;M.built.push(k);say(q.arr[k]);if(M.built.length==q.arr.length){const s=M.built.map(j=>q.arr[j]).join(" ");M.pk=s;s===q.a?(M.got++,good()):bad()}draw()}
+function undoT(){if(M.pk===null){M.built.pop();draw()}}
+function nxt(){if(M.i+1<M.qs.length){M.i++;M.pk=null;M.built=[];draw()}else{if(!M.prac){D.m[M.m]=M.got*5;save()}win();M.res=true;draw()}}
+
+/* VIEWS */
+function draw(){let h="";
+ const nav=D&&v!="nama"&&v!="guru"?`<div class="nav">${PG.map(p=>`<button class="${v==p[0]?"on":""}" onclick="go('${p[0]}')">${p[1]} ${p[2]}</button>`).join("")}<button onclick="snd=!snd;draw()">${snd?"🔊":"🔇"}</button></div>`:"";
+ if(v=="nama")h=`<div class="card" style="text-align:center"><div class="big">🕵️‍♂️🔎</div><h1>DETEKTIF KATA</h1><p><b>Temukan Kata, Susun Kalimat, Pecahkan Misi!</b><br>Bahasa Indonesia · Kelas II SD/MI · Fase A</p></div><div class="card"><h3>Halo, Detektif Cilik!</h3><p>Isi namamu dulu ya.</p><input id="nm" placeholder="Nama lengkap" value="${E(U?.nama||"")}"><input id="kl" placeholder="Kelas (contoh: 2A)" value="${E(U?.kelas||"")}"><button onclick="masuk()">🚀 Masuk</button> <button class="alt" onclick="guruLogin()">👩‍🏫 Mode Guru</button></div>`;
+ else if(v=="dasbor")h=`<div class="card"><h1>Hai, ${E(U.nama)}! 👋</h1><p>Kelas ${E(U.kelas)}</p><div class="bar"><i style="width:${prog()}%"></i></div><p>Progres belajar: <b>${prog()}%</b></p></div><div class="card"><h3>🎯 CP dan TP</h3>${CP.map(c=>`<p>• <b>${c[0]}:</b> ${c[1]}</p>`).join("")}${TP.map((t,i)=>`<p><span class="pill">TP ${i+1}</span> ${t}</p>`).join("")}</div><div class="grid">${PG.slice(1).map(p=>`<div class="card mat" style="margin:0;text-align:center" onclick="go('${p[0]}')"><div class="big">${p[1]}</div><b>${p[2]}</b> ${D.v.includes(p[0])?"✅":""}</div>`).join("")}</div><p><button class="alt" onclick="U=null;D=null;ls.s('dk3:last',null);v='nama';draw()">Ganti pengguna</button></p>`;
+ else if(v=="intro")h=hd("🌟 Ayo Kenalan dengan Kata")+`<div class="card"><p>Kata ada di mana-mana! Ada <b>kata benda</b> (nama), <b>kata kerja</b> (kegiatan), dan <b>kata sifat</b> (ciri). Kata disusun menjadi <b>kalimat</b>, dan kalimat membentuk <b>cerita</b>.</p><p>Seorang detektif kata harus pandai <b>menyimak</b>, <b>membaca</b>, <b>berbicara</b>, dan <b>menulis</b>. Siap memecahkan misi?</p><button onclick="say('Ayo kita belajar kata bersama. Detektif kata siap memecahkan misi!')">🔊 Dengarkan</button></div>`;
+ else if(v=="materi")h=hd("📘 Materi Seru")+MT.map(m=>`<div class="card"><h3>${m[0]} ${m[1]}</h3><p>${m[2]}</p><div class="fb">Contoh: <b>${m[3]}</b> <button onclick="say('${m[3].replace(/['↔=]/g," ")}')">🔊 Dengar</button></div></div>`).join("");
+ else if(v=="kamus")h=hd("🔤 Kamus Gambar")+`<div class="nav" style="position:static">${KC.map(c=>`<button class="${KF==c[0]?"on":""}" onclick="KF='${c[0]}';draw()">${c[1]}</button>`).join("")}</div><p>Ketuk kartu untuk mendengar kata dan membaca penjelasannya.</p><div class="grid">${W.map((w,i)=>KF!="semua"&&DT[w[1]][0]!=KF?"":`<button class="w" onclick="sayW(${i})"><span class="mid">${w[0]}</span><b>${w[1]}</b></button>`).join("")}</div><div class="card fb" id="kw" style="position:sticky;bottom:70px">Pilih satu kartu.</div>`;
+ else if(v=="panduan")h=hd("❓ Cara Memakai Media")+`<div class="card"><h3>🧒 Untuk Siswa</h3><p>1. Tulis nama dan kelasmu, lalu masuk ke dasbor.<br>2. Buka <b>Materi Seru</b>. Ketuk 🔊 untuk mendengarkan contoh.<br>3. Buka <b>Kamus Gambar</b>. Ketuk kartu untuk mendengar kata dan membaca penjelasannya. Pilih Hewan, Tumbuhan, Benda, Makanan, atau Alam di bagian atas.<br>4. Buka <b>Suara Hewan</b>. Ketuk hewan untuk mendengar suaranya, lalu main Tebak Suara.<br>5. Berlatih di <b>Susun Kata</b> (tanpa nilai).<br>6. Selesaikan 4 <b>Misi Detektif</b> dan <b>Seret dan Cocokkan</b>.<br>7. Kerjakan <b>Kuis Evaluasi</b>, lalu lihat nilaimu di <b>Hasil Belajarku</b>.</p><p>Tombol <b>Kembali</b> dan <b>Lanjut</b> ada di bagian bawah layar. Tombol 🔊/🔇 di menu atas menyalakan atau mematikan suara.</p></div><div class="card"><h3>👩‍🏫 Untuk Guru</h3><p>1. Bagikan tautan media ini kepada siswa.<br>2. Minta siswa memakai nama dan kelas yang sama setiap kali masuk agar hasilnya tidak terpisah.<br>3. Pilih <b>Mode Guru</b> di halaman nama, lalu masukkan PIN <b>guru123</b>.<br>4. Tabel menampilkan semua siswa: progres, skor tiap misi, kuis, game, <b>nilai akhir</b>, dan predikat. Nilai akhir = misi 40% + kuis 40% + game 20%.<br>5. Kegiatan lanjutan: siswa menyebutkan hewan lain dan menceritakan kaki, tempat hidup, makanan, dan cara berkembang biaknya.</p><p style="color:var(--mu)">Catatan: rekap semua siswa terkumpul jika halaman dibuka lewat claude.ai. Di luar itu, data hanya tersimpan di perangkat yang dipakai.</p></div>`;
+ else if(v=="suara")h=hd("🐾 Suara Hewan")+suaraV();
+ else if(v=="susun")h=hd("🧩 Susun Kata")+`<div class="card"><p>Latihan menyusun kata menjadi kalimat. Tidak ada nilai, ayo berlatih!</p><button onclick="start(2,true)">▶ Mulai Latihan</button></div>`;
+ else if(v=="misi")h=hd("🎮 Misi Detektif")+MS.map((m,i)=>`<div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:8px"><div><b>${m[0]} ${m[1]}</b><br><span style="color:var(--mu)">${D.m[i]===null?"Belum dikerjakan":"Skor: "+D.m[i]+" / 25"}</span></div><button onclick="start(${i})">${D.m[i]===null?"Mulai":"Ulangi"}</button></div>`).join("")+`<div class="card stat"><b>${msum()} / 100</b>Total skor misi</div>`;
+ else if(v=="play")h=playV();
+ else if(v=="game")h=hd("🎯 Seret dan Cocokkan")+gameV();
+ else if(v=="kuis")h=hd("📝 Kuis Evaluasi")+quizV();
+ else if(v=="ringkas")h=hd("📚 Rangkuman dan Refleksi")+`<div class="card"><p>• Kata benda: nama orang, hewan, benda.<br>• Kata kerja: kegiatan. Kata sifat: ciri atau keadaan.<br>• Persamaan kata artinya sama, lawan kata artinya berlawanan.<br>• Kalimat diawali huruf kapital dan diakhiri tanda baca.<br>• Baca teks pelan-pelan dan cari jawaban dengan kata tanya.</p></div><div class="card"><h3>✍️ Refleksi</h3>${["Kata baru yang aku ingat adalah …","Bagian yang paling seru adalah …","Aku masih ingin belajar tentang …"].map((q,i)=>`<label>${q}</label><textarea rows="2" oninput="D.r[${i}]=this.value" onchange="save()">${E(D.r[i])}</textarea>`).join("")}</div>`;
+ else if(v=="hasil"){const b=[[prog()>=50,"🥉","Detektif Pemula"],[prog()==100,"🥇","Detektif Rajin"],[D.m.every(x=>x!==null),"⭐","Misi Tuntas"],[D.q!==null&&D.q>=8,"🏆","Detektif Hebat"]];h=hd("🏅 Hasil Belajarku")+`<div class="grid"><div class="card stat"><b>${prog()}%</b>Progres</div><div class="card stat"><b>${msum()}</b>Skor misi (100)</div><div class="card stat"><b>${D.q===null?"-":D.q*10}</b>Skor kuis (100)</div><div class="card stat"><b>${nilai()}</b>Nilai akhir</div></div><div class="card"><div class="bar"><i style="width:${prog()}%"></i></div>${PG.slice(1,10).map(p=>`<p>${D.v.includes(p[0])?"✅":"⬜"} ${p[2]}</p>`).join("")}</div><div class="card"><h3>Lencanaku</h3>${b.map(x=>`<span class="pill" style="font-size:1rem;opacity:${x[0]?1:.35}">${x[1]} ${x[2]}</span> `).join("")}</div>`}
+ else if(v=="pin")h=`<div class="card"><h2>👩‍🏫 Mode Guru</h2><p>Masukkan PIN guru.</p><input id="pn" type="password" placeholder="PIN" onkeydown="if(event.key=='Enter')cekPin()"><p id="pe" style="color:var(--no)"></p><button onclick="cekPin()">Masuk</button> <button class="alt" onclick="go('nama')">Kembali</button></div>`;
+ else if(v=="guru")h=`<div id="gr"></div>`;
+ $("#app").innerHTML=nav+h;
+ const b=$("#bot"),i=PG.findIndex(x=>x[0]==v);b.hidden=!(D&&i>0&&v!="guru");b.innerHTML=`<button class="alt" onclick="go('dasbor')">🏠</button><button onclick="step(-1)" ${i<=1?"disabled":""}>⬅ Kembali</button><button onclick="step(1)" ${i>=PG.length-1?"disabled":""}>Lanjut ➡</button>`;
+ if(v=="guru")guruV()}
+function masuk(){const n=$("#nm").value.trim(),k=$("#kl").value.trim();if(!n||!k){$("#nm").placeholder="⚠ Isi nama dulu ya!";$("#kl").placeholder="⚠ Isi kelas dulu ya!";return}U={nama:n,kelas:k};load();save();win();go("dasbor")}
+let KF="semua";const KC=[["semua","Semua"],["h","🐾 Hewan"],["t","🌱 Tumbuhan"],["b","🧰 Benda"],["m","🍽️ Makanan"],["a","🌤️ Alam"]];
+const DT={};`kucing|h|4 kaki|di rumah atau di luar rumah|ikan, daging, dan makanan kucing|Beranak (melahirkan) dan menyusui
+ikan|h|tidak berkaki, bergerak dengan sirip|di air (sungai, laut, kolam)|cacing, plankton, dan tumbuhan air|Bertelur
+burung|h|2 kaki dan 2 sayap|di sarang atau di pohon|biji-bijian, buah, dan serangga|Bertelur
+ayam|h|2 kaki dan 2 sayap|di kandang atau halaman|jagung, dedak, biji-bijian, dan cacing|Bertelur
+sapi|h|4 kaki|di kandang atau padang rumput|rumput dan jerami|Beranak (melahirkan) dan menyusui
+kelinci|h|4 kaki|di kandang atau lubang tanah|wortel, sayuran, dan rumput|Beranak (melahirkan) dan menyusui
+gajah|h|4 kaki|di hutan dan padang rumput|rumput, daun, buah, dan ranting|Beranak (melahirkan) dan menyusui
+anjing|h|4 kaki|di rumah atau halaman|daging, tulang, dan makanan anjing|Beranak (melahirkan) dan menyusui
+kura-kura|h|4 kaki pendek dan bercangkang|di darat atau di air|daun, buah, sayuran, dan serangga kecil|Bertelur
+bunga|t|bagian tumbuhan yang nanti menjadi buah dan biji, menarik kupu-kupu dan lebah|hiasan, wewangian, dan tempat lebah mengambil madu
+pohon|t|menyerap air, menghasilkan oksigen, dan akarnya menahan tanah|memberi udara segar, tempat teduh, kayu, dan buah, serta mencegah banjir
+apel|t|buah tempat biji tumbuhan apel|dimakan segar, mengandung vitamin dan serat
+pisang|t|buah dari pohon pisang|dimakan, memberi tenaga, bahan kue dan keripik
+semangka|t|buah merambat yang berisi banyak air|menyegarkan badan dan melepas dahaga
+anggur|t|buah dari tanaman merambat|dimakan segar, dibuat jus, atau dikeringkan menjadi kismis
+wortel|t|akar yang menyimpan makanan tumbuhan|baik untuk mata, dimasak menjadi sayur atau jus
+buku|b|tempat tulisan dan gambar|menambah pengetahuan dan membuat kita pandai membaca
+sepeda|b|kendaraan roda dua yang dikayuh|pergi ke sekolah tanpa asap dan menyehatkan badan
+rumah|b|tempat tinggal keluarga|melindungi dari hujan dan panas, tempat istirahat dan berkumpul
+mobil|b|kendaraan roda empat bermesin|mengantar orang dan barang ke tempat yang jauh
+sepatu|b|dipakai di kaki|melindungi kaki dari panas, kotoran, dan benda tajam
+topi|b|dipakai di kepala|melindungi kepala dari terik matahari
+pensil|b|alat untuk menulis dan menggambar|bisa dihapus jika salah
+tas|b|tempat membawa barang|membawa buku dan bekal ke sekolah
+bola|b|alat untuk bermain olahraga|melatih badan dan bermain bersama teman
+jam|b|penunjuk waktu|membuat kita tepat waktu dan disiplin
+payung|b|menahan air hujan dan panas|agar badan tidak basah dan kepanasan
+bus|b|kendaraan besar untuk banyak penumpang|mengangkut banyak orang sekaligus
+pesawat|b|kendaraan yang terbang di langit|perjalanan jauh jadi sangat cepat
+kursi|b|tempat duduk|membuat kita nyaman belajar dan makan
+kasur|b|alas untuk tidur|tidur nyenyak agar badan segar
+pintu|b|jalan keluar dan masuk ruangan|menjaga rumah tetap aman
+kunci|b|alat untuk membuka dan mengunci pintu|menjaga barang agar aman
+susu|m|minuman dari sapi atau kambing|menguatkan tulang dan gigi
+roti|m|makanan dari tepung yang dipanggang|memberi tenaga, cocok untuk sarapan
+nasi|m|makanan pokok dari beras (padi)|memberi tenaga untuk belajar dan bermain
+matahari|a|menerangi dan menghangatkan bumi|membantu tumbuhan membuat makanan dan mengeringkan jemuran
+bulan|a|terlihat di langit malam|menerangi malam dan penanda bulan
+hujan|a|air yang jatuh dari awan|memberi air bagi tumbuhan, sungai, dan kita
+bintang|a|bersinar di langit malam|penunjuk arah dan hiasan langit malam`.split("\n").forEach(l=>{const p=l.split("|");DT[p[0]]=p.slice(1)});
+function sayW(i){const w=W[i],d=DT[w[1]],c=d[0];let t,s;
+ if(c=="h"){t=`<span class="pill">🐾 Hewan</span><br>🦶 Kaki: ${d[1]}<br>🏡 Tempat hidup: ${d[2]}<br>🍽️ Makanan: ${d[3]}<br>🥚 Berkembang biak: ${d[4]}`;s=`${w[1]}. Kakinya ${d[1]}. Hidup ${d[2]}. Makanannya ${d[3]}. ${d[4]}.`}
+ else{const L={t:"🌱 Tumbuhan",b:"🧰 Benda",m:"🍽️ Makanan dan minuman",a:"🌤️ Alam"}[c];t=`<span class="pill">${L}</span><br>⚙️ Fungsi: ${d[1]}<br>⭐ Manfaat: ${d[2]}`;s=`${w[1]}. Fungsinya ${d[1]}. Manfaatnya ${d[2]}.`}
+ $("#kw").innerHTML=`<b style="font-size:1.3rem">${w[0]} ${cap(w[1])}</b><br>${t}`;say(s)}
+function playV(){const n=M.qs.length;if(M.res){const s=M.got*5;return hd(M.prac?"Latihan Selesai":MS[M.m][1])+`<div class="card stat"><div class="big">${M.got>=4?"🏆":M.got>=2?"⭐":"💪"}</div><b>${M.got} / ${n} benar</b>${M.prac?"":"Skor misi: "+s+" / 25"}<p><button onclick="${M.prac?"start(2,true)":"go('misi')"}">${M.prac?"Latihan lagi":"Kembali ke Misi"}</button></p></div>`}
+ const q=M.qs[M.i];let h=hd(M.prac?"🧩 Latihan Susun Kata":MS[M.m][1])+`<div class="bar"><i style="width:${(M.i+(M.pk!==null?1:0))/n*100}%"></i></div><p>Soal ${M.i+1} dari ${n}</p><div class="card">`;
+ if(q.tx)h+=`<div class="fb">📖 ${E(q.tx)} <button onclick="say(${E(JSON.stringify(q.tx))})">🔊</button></div>`;
+ if(q.e)h+=`<div class="big">${q.e}</div>`;
+ if(q.arr){h+=`<p><b>Susun kata menjadi kalimat yang benar:</b></p><div class="slot">${M.built.map(k=>`<span class="chip">${E(q.arr[k])}</span>`).join("")}</div>`+(M.pk===null?q.arr.map((w,k)=>M.built.includes(k)?"":`<button class="chip" onclick="pickT(${k})">${E(w)}</button>`).join("")+`<br><button class="alt" onclick="undoT()">↩ Hapus</button>`:"")}
+ else h+=`<p><b>${E(q.q)}</b> <button onclick="say(${E(JSON.stringify(q.q.replace(/[“”]/g,"")))})">🔊</button></p>`+q.o.map(o=>`<button class="opt ${M.pk!==null?(o==q.a?"ok":o==M.pk?"no":""):""}" onclick="ans(${E(JSON.stringify(o))})">${E(o)}</button>`).join("");
+ if(M.pk!==null)h+=`<div class="fb">${M.pk===q.a?"🎉 <b>Benar!</b>":"🔎 <b>Belum tepat.</b>"} ${E(q.ex)}</div><button onclick="nxt()">${M.i+1<n?"Lanjut ➡":"Selesai 🏁"}</button>`;
+ return h+`</div>`}
+function gameV(){const T=["🖼️ Gambar dan Kata","↔️ Lawan Kata","🔢 Urutkan Cerita"];if(!G.pairs)gameInit();
+ let h=`<div class="nav" style="position:static">${T.map((t,i)=>`<button class="${G.tab==i?"on":""}" onclick="G.tab=${i};G.sel=null;draw()">${t}</button>`).join("")}</div>`;
+ if(G.tab<2){const pr=G.pairs[G.tab],pl=G.pl[G.tab],left=pr.map((p,i)=>i).filter(i=>!pl.includes(i));
+  h+=`<div class="card"><p>Seret (atau ketuk lalu ketuk kotak) ${G.tab?"kata ke lawan katanya":"kata ke gambarnya"}.</p>${left.map(i=>`<span class="chip${G.sel===i?" sel":""}" draggable="true" ondragstart="event.dataTransfer.setData('t','${i}')" onclick="G.sel=${i};say('${pr[i][0]}');draw()">${pr[i][0]}</span>`).join("")||"🎉 Semua sudah cocok!"}</div>`+pr.map((p,i)=>`<div class="tg${pl.includes(i)?" good":""}" id="tg${i}" ondragover="event.preventDefault()" ondrop="drop(event,${i})" onclick="put(${i})"><span class="mid">${p[1]}</span><b>${pl.includes(i)?"✅ "+p[0]:""}</b></div>`).join("")+`<div id="gf"></div>`}
+ else{const s=ST[G.os],o=G.ord;h+=`<div class="card"><p>Ketuk kalimat sesuai urutan kejadian.</p>${sh(s.map((t,i)=>i)).filter(i=>!o.includes(i)).map(i=>`<button class="alt" style="margin:4px" onclick="ordp(${i})">${E(s[i])}</button>`).join("")}<ol>${o.map(i=>`<li>${E(s[i])}</li>`).join("")}</ol><div id="gf"></div>${o.length==s.length?`<button onclick="G.os=1-G.os;G.ord=[];draw()">Cerita berikutnya ➡</button>`:""}</div>`}
+ return h+`<p>Skor game: ${D.a[0]+D.a[1]+D.a[2]}</p>`}
+function gameInit(){G.pairs=[sh(W).slice(0,6).map(w=>[w[1],w[0]]),sh(MK.filter(k=>k[1]=="lawan")).slice(0,5).map(k=>[k[0],"↔ "+k[2]])];G.pl=[[],[]]}
+function drop(e,i){e.preventDefault();G.sel=+e.dataTransfer.getData("t");put(i)}
+function put(i){if(G.sel===null)return;const pl=G.pl[G.tab],s=G.sel;G.sel=null;if(s===i){pl.push(i);D.a[G.tab]=pl.length;good();save();draw();$("#gf").innerHTML=`<div class="fb">🎉 Benar!</div>`}else{bad();draw();const t=$("#tg"+i);t&&t.classList.add("shake");$("#gf").innerHTML=`<div class="fb">🔎 Belum cocok, coba lagi.</div>`}}
+function ordp(i){const s=ST[G.os];if(i==G.ord.length){G.ord.push(i);good();if(G.ord.length==s.length){D.a[2]=Math.min(2,D.a[2]+1);save();win()}draw()}else{bad();draw();$("#gf").innerHTML=`<div class="fb">Belum tepat, coba kalimat lain.</div>`}}
+function quizV(){if(Q.done){const sc=Q.pk.filter((p,i)=>p==QZ[i][3]).length;return `<div class="card stat"><div class="big">${sc>=8?"🏆":sc>=6?"⭐":"💪"}</div><b>${sc*10}</b>Skor (benar ${sc} dari ${QZ.length})<p><button onclick="Q={i:0,pk:[],done:false};draw()">🔁 Ulangi Kuis</button> <button class="alt" onclick="go('dasbor')">🏠 Dasbor</button></p></div>`+QZ.map((q,i)=>`<div class="card"><span class="pill">${q[0]}</span> <b>${i+1}. ${q[1]}</b><p>${Q.pk[i]==q[3]?"✅":"❌"} Jawaban: ${q[2][q[3]]}<br>💡 ${q[4]}</p></div>`).join("")}
+ const q=QZ[Q.i],p=Q.pk[Q.i];return `<div class="bar"><i style="width:${Q.i/QZ.length*100}%"></i></div><div class="card"><span class="pill">${q[0]}</span> Soal ${Q.i+1} dari ${QZ.length}<h3>${q[1]} <button class="alt" onclick="say(${E(JSON.stringify(q[1].replace(/[“”…]/g,"")))})">🔊</button></h3>${q[2].map((o,k)=>`<button class="opt ${p===undefined?"":k==q[3]?"ok":k==p?"no":""}" onclick="qa(${k})">${"ABCD"[k]}. ${o}</button>`).join("")}${p!==undefined?`<div class="fb">${p==q[3]?"🎉 Benar!":"🔎 Belum tepat."} ${q[4]}</div><button onclick="qn()">${Q.i+1<QZ.length?"Soal berikutnya ➡":"Lihat Hasil 🏁"}</button>`:""}</div>`}
+function qa(k){if(Q.pk[Q.i]!==undefined)return;Q.pk[Q.i]=k;k==QZ[Q.i][3]?good():bad();draw()}
+function qn(){if(Q.i+1<QZ.length)Q.i++;else{Q.done=true;D.q=Q.pk.filter((p,i)=>p==QZ[i][3]).length;save();win()}draw()}
+
+const AN=[["kucing","🐱","meong"],["kambing","🐐","mbek"],["anjing","🐶","guk guk"],["sapi","🐮","mooo"],["ayam","🐔","kukuruyuk"],["bebek","🦆","kwek kwek"],["burung","🐦","cit cit cit"],["gajah","🐘","tuuut"]];
+function tn(o){const a=AC,t=a.currentTime+(o.at||0),os=a.createOscillator(),g=a.createGain(),b=a.createBiquadFilter();os.type=o.t;os.frequency.setValueAtTime(o.f[0],t);os.frequency.exponentialRampToValueAtTime(o.f[1],t+o.d);b.type=o.bp?"bandpass":"lowpass";b.frequency.value=o.bp||o.lp||2000;b.Q.value=o.bp?2:1;os.connect(b);b.connect(g);g.connect(a.destination);const m=o.g||.3;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(m,t+.03);g.gain.setValueAtTime(m,t+o.d*.7);g.gain.linearRampToValueAtTime(0,t+o.d);
+ if(o.v){const l=a.createOscillator(),lg=a.createGain();l.frequency.value=o.v[0];lg.gain.value=o.v[1];l.connect(lg);lg.connect(os.frequency);l.start(t);l.stop(t+o.d)}os.start(t);os.stop(t+o.d+.05)}
+function animal(k){if(!snd)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.state=="suspended")AC.resume();
+ if(k==0){tn({t:"sawtooth",f:[450,900],d:.25,bp:1400,g:.35});tn({t:"sawtooth",f:[900,500],d:.5,at:.25,bp:1200,g:.35,v:[6,15]})}
+ else if(k==1)tn({t:"sawtooth",f:[420,380],d:.9,bp:900,g:.4,v:[30,70]});
+ else if(k==2){tn({t:"sawtooth",f:[350,180],d:.18,lp:1200,g:.5});tn({t:"sawtooth",f:[350,180],d:.18,at:.3,lp:1200,g:.5})}
+ else if(k==3)tn({t:"sawtooth",f:[140,100],d:1.3,lp:700,g:.5,v:[5,8]});
+ else if(k==4)[[500,850,.15,0],[850,600,.12,.17],[600,950,.2,.31],[950,500,.5,.53]].forEach(x=>tn({t:"square",f:[x[0],x[1]],d:x[2],at:x[3],lp:2500,g:.15}));
+ else if(k==5)[0,1,2].forEach(i=>tn({t:"square",f:[600,400],d:.14,at:i*.22,bp:1100,g:.2}));
+ else if(k==6)[0,1,2,3].forEach(i=>tn({t:"sine",f:[2200,3400],d:.09,at:i*.14,lp:5000,g:.25}));
+ else tn({t:"sawtooth",f:[350,950],d:.9,lp:1800,g:.4,v:[12,25]})}catch(e){}}
+function hear(i){animal(i);setTimeout(()=>say(AN[i][2]),1500)}
+let AS={qs:null};
+function suaraV(){let h=`<div class="card"><p>Ketuk hewan untuk mendengar suaranya! 🔊</p></div><div class="grid">${AN.map((a,i)=>`<button class="w" data-nb onclick="hear(${i})"><span class="mid" style="font-size:3.4rem">${a[1]}</span><b>${cap(a[0])}</b><br>“${a[2]}”</button>`).join("")}</div><div class="card"><h3>🎧 Tebak Suara Hewan</h3>`;
+ if(!AS.qs)return h+`<button onclick="asStart()">▶ Mulai Tebak Suara</button></div>`;
+ if(AS.done)return h+`<div class="big">${AS.got>=4?"🏆":"⭐"}</div><p><b>Benar ${AS.got} dari 5</b> · Skor terbaik: ${D.s}</p><button onclick="asStart()">🔁 Main lagi</button></div>`;
+ const q=AS.qs[AS.i];h+=`<p>Soal ${AS.i+1} dari 5. Hewan apa yang bersuara seperti ini?</p><button data-nb onclick="animal(${q.a})">🔊 Putar suara</button><div class="grid" style="margin-top:10px">${q.o.map(k=>`<button class="opt ${AS.pk!==null?(k==q.a?"ok":k==AS.pk?"no":""):""}" style="text-align:center" onclick="asAns(${k})"><span class="mid">${AN[k][1]}</span>${cap(AN[k][0])}</button>`).join("")}</div>`;
+ if(AS.pk!==null)h+=`<div class="fb">${AS.pk==q.a?"🎉 Benar!":"🔎 Belum tepat."} ${cap(AN[q.a][0])} bersuara “${AN[q.a][2]}”.</div><button onclick="asNext()">${AS.i<4?"Lanjut ➡":"Selesai 🏁"}</button>`;
+ return h+`</div>`}
+function asStart(){AS={i:0,pk:null,got:0,done:false,qs:sh(AN.map((a,i)=>i)).slice(0,5).map(a=>({a,o:sh([a,...sh(AN.map((x,i)=>i).filter(i=>i!=a)).slice(0,3)])}))};draw();animal(AS.qs[0].a)}
+function asAns(k){if(AS.pk!==null)return;AS.pk=k;k==AS.qs[AS.i].a?(AS.got++,good()):bad();draw()}
+function asNext(){if(AS.i<4){AS.i++;AS.pk=null;draw();animal(AS.qs[AS.i].a)}else{AS.done=true;D.s=Math.max(D.s,AS.got);save();win();draw()}}
+function guruLogin(){v="pin";draw()}
+function cekPin(){if($("#pn").value.trim()==="guru123"){v="guru";draw()}else{$("#pe").textContent="PIN salah, coba lagi."}}
+async function guruV(){let rows=Object.values(ls.g("dk3:all",{}));
+ try{const c=await claude.use("db");if(c){c.collection("dk3").onSnapshot(sn=>ren(sn.docs.map(d=>d.data?d.data():d),"Data bersama semua siswa"),()=>ren(rows,"Data di perangkat ini"));return}}catch(e){}
+ ren(rows,"Data di perangkat ini");
+ function ren(r,s){if(v!="guru")return;const k=r.filter(x=>x.kuis!=null),av=k.length?Math.round(k.reduce((a,x)=>a+x.kuis,0)/k.length):0,mx=r.length?Math.max(...r.map(x=>x.nilai||0)):0;r=[...r].sort((a,b)=>(b.nilai||0)-(a.nilai||0));
+  $("#gr").innerHTML=`<div class="card" style="display:flex;justify-content:space-between;align-items:center"><div><h2>👩‍🏫 Mode Guru</h2><span style="color:var(--mu)">${s}</span></div><button class="alt" onclick="go('nama')">Keluar</button></div><div class="grid"><div class="card stat"><b>${r.length}</b>Siswa mengerjakan</div><div class="card stat"><b>${av}</b>Rata-rata kuis</div><div class="card stat"><b>${r.length?Math.round(r.reduce((a,x)=>a+(x.nilai||0),0)/r.length):0}</b>Rata-rata nilai akhir</div><div class="card stat"><b>${mx}</b>Nilai tertinggi</div></div><div class="card tw"><table><tr><th>#</th><th>Nama</th><th>Kelas</th><th>Progres</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>Kuis</th><th>Game</th><th>Nilai Akhir</th><th>Predikat</th><th>Terakhir</th></tr>${r.map((x,i)=>`<tr><td>${i+1}</td><td>${E(x.nama)}</td><td>${E(x.kelas)}</td><td>${x.progres}%</td><td>${x.m1??"-"}</td><td>${x.m2??"-"}</td><td>${x.m3??"-"}</td><td>${x.m4??"-"}</td><td>${x.kuis??"-"}</td><td>${x.game??"-"}</td><td><b>${x.nilai??"-"}</b></td><td>${pred(x.nilai||0)}</td><td>${new Date(x.waktu).toLocaleDateString("id-ID")}</td></tr>`).join("")||"<tr><td colspan=13>Belum ada data.</td></tr>"}</table></div>`}}
+if(U)load();draw();
+</script></body></html>
